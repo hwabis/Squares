@@ -25,7 +25,7 @@ namespace osu.Game.Rulesets.Squares.UI
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
-                    Size = new Vector2(0.4f, 0.5f), // umm please change this later (make sure it's a square)
+                    Size = new Vector2(0.35f, 0.5f), // umm please change this later (make sure it's a square)
                     Children = new Drawable[]
                     {
                         new Container
@@ -51,18 +51,12 @@ namespace osu.Game.Rulesets.Squares.UI
             private GridContainer grid;
             private Square[] squares = new Square[9];
 
-            private readonly Container content = new Container
-            {
-                RelativeSizeAxes = Axes.Both,
-            };
-
             [BackgroundDependencyLoader]
             private void load()
             {
                 InternalChildren = new Drawable[]
                 {
-                    grid = new GridContainer { RelativeSizeAxes = Axes.Both },
-                    content
+                    grid = new GridContainer { RelativeSizeAxes = Axes.Both }                
                 };
 
                 Drawable[][] tmp = new Drawable[3][];
