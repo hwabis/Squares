@@ -47,7 +47,12 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
                     ApplyResult(r => r.Type = r.Judgement.MinResult);
                 return;
             }
-            Console.WriteLine("YES");
+
+            var result = HitObject.HitWindows.ResultFor(timeOffset);
+            if (result == HitResult.None || result == HitResult.Miss && Time.Current < HitObject.StartTime)
+                return;
+
+            ApplyResult(r => r.Type = result);
         }
 
         protected override double InitialLifetimeOffset => time_preempt;
@@ -57,7 +62,7 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
         protected override void UpdateHitStateTransforms(ArmedState state)
         {
-            const double duration = 1000;
+            const double duration = 100;
 
             switch (state)
             {
@@ -75,7 +80,7 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
         public bool OnPressed(KeyBindingPressEvent<SquaresAction> e)
         {
             UpdateResult(true);
-            return true;
+            return false;
         }
 
         public void OnReleased(KeyBindingReleaseEvent<SquaresAction> e)
