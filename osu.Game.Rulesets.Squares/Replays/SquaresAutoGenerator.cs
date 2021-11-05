@@ -25,7 +25,7 @@ namespace osu.Game.Rulesets.Squares.Replays
                 Frames.Add(new SquaresReplayFrame
                 {
                     Time = hitObject.StartTime,
-                    Position = hitObject.Position,
+                    Position = hitObject.IndexToPosition(hitObject.Index),
                     // todo: add required inputs and extra frames.
                 });
             }

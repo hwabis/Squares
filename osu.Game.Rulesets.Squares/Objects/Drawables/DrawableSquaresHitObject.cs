@@ -4,6 +4,7 @@
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Utils;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using osuTK;
@@ -19,9 +20,9 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
             : base(hitObject)
         {
             Size = new Vector2((480 / 3)*0.95f);
-            Origin = Anchor.Centre;
+            Origin = Anchor.TopLeft;
 
-            Position = hitObject.Position;
+            Position = hitObject.IndexToPosition(hitObject.Index);
 
             // todo: add visuals.
         }

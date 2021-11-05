@@ -8,6 +8,7 @@ using osu.Game.Rulesets.Squares.Objects;
 using osu.Game.Rulesets.Objects;
 using osu.Game.Rulesets.Objects.Types;
 using osuTK;
+using osu.Framework.Utils;
 
 namespace osu.Game.Rulesets.Squares.Beatmaps
 {
@@ -28,7 +29,7 @@ namespace osu.Game.Rulesets.Squares.Beatmaps
             {
                 Samples = original.Samples,
                 StartTime = original.StartTime,
-                Position = (original as IHasPosition)?.Position ?? Vector2.Zero,
+                Index = RNG.Next(9),
             };
         }
     }
