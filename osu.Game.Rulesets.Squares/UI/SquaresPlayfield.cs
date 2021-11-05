@@ -79,6 +79,9 @@ namespace osu.Game.Rulesets.Squares.UI
                         Width = 0.95f
                     },
                 };
+
+                Masking = true;
+                CornerRadius = 20;
             }
         }
     }

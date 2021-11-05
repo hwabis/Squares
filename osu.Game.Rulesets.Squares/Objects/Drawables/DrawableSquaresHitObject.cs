@@ -45,6 +45,9 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
         protected override double InitialLifetimeOffset => time_preempt;
 
+        // lol they scale out from the top left but whatever
+        protected override void UpdateInitialTransforms() => this.ScaleTo(0).Then().ScaleTo(1, time_preempt, Easing.In);
+
         protected override void UpdateHitStateTransforms(ArmedState state)
         {
             const double duration = 1000;
