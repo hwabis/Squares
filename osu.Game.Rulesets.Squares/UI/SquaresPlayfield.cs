@@ -14,6 +14,7 @@ namespace osu.Game.Rulesets.Squares.UI
     [Cached]
     public class SquaresPlayfield : Playfield
     {
+        private Container parentContainer;
         private GridContainer grid;
         private Square[] squares = new Square[9];
 
@@ -22,12 +23,11 @@ namespace osu.Game.Rulesets.Squares.UI
         {
             AddRangeInternal(new Drawable[]
             {
-                new Container
+                parentContainer = new Container
                 {
                     Anchor = Anchor.Centre,
                     Origin = Anchor.Centre,
-                    RelativeSizeAxes = Axes.Both,
-                    Size = new Vector2(0.35f, 0.5f), // umm please change this later (make sure it's a square)
+                    Size = new Vector2(480), // you know what this is good enough for now ok
                     Children = new Drawable[]
                     {
                         grid = new GridContainer { RelativeSizeAxes = Axes.Both },
@@ -47,8 +47,10 @@ namespace osu.Game.Rulesets.Squares.UI
                         }*/
                     }
                 }
-            }); 
-            
+            });
+
+            parentContainer.Size = new Vector2(parentContainer.Size.X, parentContainer.Size.X);
+
             Drawable[][] tmp = new Drawable[3][];
             for (int i = 0; i < 3; i++)
             {

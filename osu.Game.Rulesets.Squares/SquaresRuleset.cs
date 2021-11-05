@@ -49,8 +49,15 @@ namespace osu.Game.Rulesets.Squares
 
         public override IEnumerable<KeyBinding> GetDefaultKeyBindings(int variant = 0) => new[]
         {
-            new KeyBinding(InputKey.Z, SquaresAction.Button1),
-            new KeyBinding(InputKey.X, SquaresAction.Button2),
+            new KeyBinding(InputKey.Q, SquaresAction.Button1),
+            new KeyBinding(InputKey.W, SquaresAction.Button2),
+            new KeyBinding(InputKey.E, SquaresAction.Button3),
+            new KeyBinding(InputKey.A, SquaresAction.Button4),
+            new KeyBinding(InputKey.S, SquaresAction.Button5),
+            new KeyBinding(InputKey.D, SquaresAction.Button6),
+            new KeyBinding(InputKey.Z, SquaresAction.Button7),
+            new KeyBinding(InputKey.X, SquaresAction.Button8),
+            new KeyBinding(InputKey.C, SquaresAction.Button9),
         };
 
         public override Drawable CreateIcon() => new Icon(ShortName[0]);
