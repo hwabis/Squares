@@ -11,7 +11,7 @@ using osu.Game.Users;
 
 namespace osu.Game.Rulesets.Squares.Mods
 {
-    public class SquaresModAutoplay : ModAutoplay<SquaresHitObject>
+    public class SquaresModAutoplay : ModAutoplay
     {
         public override Score CreateReplayScore(IBeatmap beatmap, IReadOnlyList<Mod> mods) => new Score
         {

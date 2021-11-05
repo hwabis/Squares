@@ -4,15 +4,18 @@
 using osu.Framework.Allocation;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
+using osu.Framework.Input.Bindings;
+using osu.Framework.Input.Events;
 using osu.Framework.Utils;
 using osu.Game.Rulesets.Objects.Drawables;
 using osu.Game.Rulesets.Scoring;
 using osuTK;
 using osuTK.Graphics;
+using System;
 
 namespace osu.Game.Rulesets.Squares.Objects.Drawables
 {
-    public class DrawableSquaresHitObject : DrawableHitObject<SquaresHitObject>
+    public class DrawableSquaresHitObject : DrawableHitObject<SquaresHitObject>, IKeyBindingHandler<SquaresAction>
     {
         private const double time_preempt = 1000;
 
@@ -38,9 +41,13 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
         protected override void CheckForResult(bool userTriggered, double timeOffset)
         {
-            if (timeOffset >= 0)
-                // todo: implement judgement logic
-                ApplyResult(r => r.Type = HitResult.Perfect);
+            if (!userTriggered)
+            {
+                if (!HitObject.HitWindows.CanBeHit(timeOffset))
+                    ApplyResult(r => r.Type = r.Judgement.MinResult);
+                return;
+            }
+            Console.WriteLine("YES");
         }
 
         protected override double InitialLifetimeOffset => time_preempt;
@@ -63,6 +70,16 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
                     this.FadeOut(duration, Easing.InQuint).Expire();
                     break;
             }
+        }
+
+        public bool OnPressed(KeyBindingPressEvent<SquaresAction> e)
+        {
+            UpdateResult(true);
+            return true;
+        }
+
+        public void OnReleased(KeyBindingReleaseEvent<SquaresAction> e)
+        {
         }
     }
 }
