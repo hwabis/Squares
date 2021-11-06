@@ -33,6 +33,11 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
             Position = hitObject.IndexToPosition(hitObject.Index);
 
             Action = (SquaresAction)hitObject.Index;
+
+            Masking = true;
+            CornerRadius = 10; // um so 20 doesn't fit onto the playfield for some reason
+            BorderThickness = 5;
+            BorderColour = Color4.Green; // idk how jubeat does repeated notes? visibility?
         }
 
         [BackgroundDependencyLoader]
