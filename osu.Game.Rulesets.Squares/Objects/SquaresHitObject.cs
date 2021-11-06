@@ -16,7 +16,7 @@ namespace osu.Game.Rulesets.Squares.Objects
 
         public Vector2 IndexToPosition(int index)
         {
-            Vector2 pos = new Vector2(480 * 0.05f / 3 / 2); // offset thing
+            Vector2 pos = new Vector2(480 / 3 / 2); // half a square width (center origin)
             Vector2 squareX = new Vector2(480 / 3, 0);
             Vector2 squareY = new Vector2(0, 480 / 3);
             switch (index)

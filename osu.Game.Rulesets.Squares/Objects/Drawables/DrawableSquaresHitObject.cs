@@ -27,8 +27,8 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
         public DrawableSquaresHitObject(SquaresHitObject hitObject)
             : base(hitObject)
         {
-            Size = new Vector2((480 / 3)*0.95f);
-            Origin = Anchor.TopLeft;
+            Size = new Vector2((480 / 3) * 0.95f);
+            Origin = Anchor.Centre;
 
             Position = hitObject.IndexToPosition(hitObject.Index);
 
