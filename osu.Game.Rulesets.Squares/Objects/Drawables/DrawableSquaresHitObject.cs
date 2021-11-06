@@ -1,7 +1,9 @@
 ﻿// Copyright (c) ppy Pty Ltd <contact@ppy.sh>. Licensed under the MIT Licence.
 // See the LICENCE file in the repository root for full licence text.
 
+using JetBrains.Annotations;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Input.Bindings;
@@ -19,6 +21,9 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
     {
         private const double time_preempt = 1000;
 
+        // so mania does it with like a bindable thing... idk how that works... gonna go with something more primitive
+        public SquaresAction Action { get; set; }
+
         public DrawableSquaresHitObject(SquaresHitObject hitObject)
             : base(hitObject)
         {
@@ -27,7 +32,7 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
             Position = hitObject.IndexToPosition(hitObject.Index);
 
-            // todo: add visuals.
+            Action = (SquaresAction)hitObject.Index;
         }
 
         [BackgroundDependencyLoader]
@@ -79,8 +84,9 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
         public bool OnPressed(KeyBindingPressEvent<SquaresAction> e)
         {
-            UpdateResult(true);
-            return false;
+            if (e.Action != Action)
+                return false;
+            return UpdateResult(true);
         }
 
         public void OnReleased(KeyBindingReleaseEvent<SquaresAction> e)
