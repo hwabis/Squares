@@ -19,6 +19,7 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 {
     public class DrawableSquaresHitObject : DrawableHitObject<SquaresHitObject>, IKeyBindingHandler<SquaresAction>
     {
+        // eventually this should be user-adjustable
         private const double time_preempt = 1000;
 
         // so mania does it with like a bindable thing... idk how that works... gonna go with something more primitive
@@ -36,8 +37,8 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
             Masking = true;
             CornerRadius = 10; // um so 20 doesn't fit onto the playfield for some reason
-            BorderThickness = 5;
-            BorderColour = Color4.Green; // idk how jubeat does repeated notes? visibility?
+            BorderThickness = 10;
+            BorderColour = Color4.Cyan;
         }
 
         [BackgroundDependencyLoader]
@@ -45,7 +46,8 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
         {
             AddInternal(new Box
             {
-                RelativeSizeAxes = Axes.Both
+                RelativeSizeAxes = Axes.Both,
+                Colour = Color4.Transparent
             });
         }
 
@@ -67,7 +69,6 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
 
         protected override double InitialLifetimeOffset => time_preempt;
 
-        // lol they scale out from the top left but whatever
         protected override void UpdateInitialTransforms() => this.ScaleTo(0).Then().ScaleTo(1, time_preempt, Easing.In);
 
         protected override void UpdateHitStateTransforms(ArmedState state)
@@ -81,7 +82,7 @@ namespace osu.Game.Rulesets.Squares.Objects.Drawables
                     break;
 
                 case ArmedState.Miss:
-                    this.FadeColour(Color4.Red, duration);
+                    this.FadeColour(Color4.Red);
                     this.FadeOut(duration, Easing.InQuint).Expire();
                     break;
             }
