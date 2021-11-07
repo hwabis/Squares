@@ -49,8 +49,6 @@ namespace osu.Game.Rulesets.Squares.UI
                 }
             });
 
-            parentContainer.Size = new Vector2(parentContainer.Size.X, parentContainer.Size.X);
-
             Drawable[][] tmp = new Drawable[3][];
             for (int i = 0; i < 3; i++)
             {

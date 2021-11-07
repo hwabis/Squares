@@ -17,6 +17,7 @@ using osu.Game.Rulesets.Mods;
 using osu.Game.Rulesets.UI;
 using osuTK;
 using osuTK.Graphics;
+using static osu.Game.Rulesets.Squares.UI.SquaresPlayfield;
 
 namespace osu.Game.Rulesets.Squares
 {
@@ -60,27 +61,61 @@ namespace osu.Game.Rulesets.Squares
             new KeyBinding(InputKey.C, SquaresAction.Button9),
         };
 
-        public override Drawable CreateIcon() => new Icon(ShortName[0]);
+        public override Drawable CreateIcon() => new Icon();
 
+        // pretty sure this is the wrong way to do it but it's low priority
         public class Icon : CompositeDrawable
         {
-            public Icon(char c)
+            private GridContainer grid;
+
+            public Icon()
             {
                 InternalChildren = new Drawable[]
                 {
-                    new Circle
+                    new Container
                     {
-                        Size = new Vector2(20),
-                        Colour = Color4.White,
-                    },
-                    new SpriteText
-                    {
-                        Anchor = Anchor.Centre,
-                        Origin = Anchor.Centre,
-                        Text = c.ToString(),
-                        Font = OsuFont.Default.With(size: 18)
+                        Origin = Anchor.TopLeft,
+                        Size = new Vector2(24),
+                        Children = new Drawable[]
+                        {
+                            grid = new GridContainer { RelativeSizeAxes = Axes.Both }
+                        }
                     }
                 };
+
+                Drawable[][] tmp = new Drawable[3][];
+                for (int i = 0; i < 3; i++)
+                {
+                    tmp[i] = new Drawable[]
+                    {
+                        new Square() { RelativeSizeAxes = Axes.Both },
+                        new Square() { RelativeSizeAxes = Axes.Both },
+                        new Square() { RelativeSizeAxes = Axes.Both },
+                    };
+                }
+                grid.Content = tmp;
+            }
+
+            // um i copy pasted this from playfield..
+            private class Square : CompositeDrawable
+            {
+                public Square()
+                {
+                    InternalChildren = new Drawable[]
+                    {
+                        new Box
+                        {
+                            Colour = Color4.White,
+                            RelativeSizeAxes = Axes.Both,
+
+                            Height = 0.8f,
+                            Width = 0.8f
+                        },
+                    };
+
+                    Masking = true;
+                    CornerRadius = 2;
+                }
             }
         }
     }
