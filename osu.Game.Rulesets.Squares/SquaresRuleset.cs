@@ -31,8 +31,8 @@ namespace osu.Game.Rulesets.Squares
         public override IBeatmapConverter CreateBeatmapConverter(IBeatmap beatmap) =>
             new SquaresBeatmapConverter(beatmap, this);
 
-        public override DifficultyCalculator CreateDifficultyCalculator(WorkingBeatmap beatmap) =>
-            new SquaresDifficultyCalculator(this, beatmap);
+        public override DifficultyCalculator CreateDifficultyCalculator(IWorkingBeatmap beatmap) =>
+            new SquaresDifficultyCalculator(RulesetInfo, beatmap);
 
         public override IEnumerable<Mod> GetModsFor(ModType type)
         {

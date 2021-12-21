@@ -3,11 +3,10 @@
 
 using System.Collections.Generic;
 using osu.Game.Beatmaps;
-using osu.Game.Rulesets.Squares.Objects;
+using osu.Game.Online.API.Requests.Responses;
 using osu.Game.Rulesets.Squares.Replays;
 using osu.Game.Rulesets.Mods;
 using osu.Game.Scoring;
-using osu.Game.Users;
 
 namespace osu.Game.Rulesets.Squares.Mods
 {
@@ -17,7 +16,7 @@ namespace osu.Game.Rulesets.Squares.Mods
         {
             ScoreInfo = new ScoreInfo
             {
-                User = new User { Username = "sample" },
+                User = new APIUser { Username = "sample" },
             },
             Replay = new SquaresAutoGenerator(beatmap).Generate(),
         };

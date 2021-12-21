@@ -13,14 +13,14 @@ namespace osu.Game.Rulesets.Squares
 {
     public class SquaresDifficultyCalculator : DifficultyCalculator
     {
-        public SquaresDifficultyCalculator(Ruleset ruleset, WorkingBeatmap beatmap)
+        public SquaresDifficultyCalculator(IRulesetInfo ruleset, IWorkingBeatmap beatmap)
             : base(ruleset, beatmap)
         {
         }
 
         protected override DifficultyAttributes CreateDifficultyAttributes(IBeatmap beatmap, Mod[] mods, Skill[] skills, double clockRate)
         {
-            return new DifficultyAttributes(mods, skills, 0);
+            return new DifficultyAttributes(mods, 0);
         }
 
         protected override IEnumerable<DifficultyHitObject> CreateDifficultyHitObjects(IBeatmap beatmap, double clockRate) => Enumerable.Empty<DifficultyHitObject>();
